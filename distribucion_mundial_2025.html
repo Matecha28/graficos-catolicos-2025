@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Distribución mundial de católicos 2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h3>Distribución mundial de católicos en 2025 (%)</h3>
+  <canvas id="chart2" width="600" height="400"></canvas>
+  <script>
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+      type: 'doughnut',
+      data: {
+        labels: ['América', 'Europa', 'África', 'Asia', 'Oceanía'],
+        datasets: [{
+          data: [47.8, 20, 20, 11, 1],
+          backgroundColor: ['#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.label}: ${ctx.parsed}% del total`
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Identidad católica en América Latina 2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h3>Identidad católica en América Latina (2025)</h3>
+  <canvas id="chart3" width="700" height="400"></canvas>
+  <script>
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+      type: 'bar',
+      data: {
+        labels: ['Perú', 'Brasil', 'México', 'Colombia', 'Argentina', 'Chile'],
+        datasets: [
+          {
+            label: 'Criados como católicos (%)',
+            data: [82, 71, 88, 99, 82, 83],
+            backgroundColor: '#00b4d8'
+          },
+          {
+            label: 'Actualmente católicos (%)',
+            data: [64, 50, 68, 74, 63, 54],
+            backgroundColor: '#ff595e'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            title: { display: true, text: '% de población' }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%`
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
