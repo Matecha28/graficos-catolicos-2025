@@ -5,20 +5,33 @@
   <meta charset="UTF-8">
   <title>Católicos en el mundo 2025</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    canvas {
+      max-width: 700px;
+      margin: auto;
+    }
+  </style>
 </head>
 <body>
-  <h3>Población católica mundial estimada en 2025</h3>
-  <canvas id="chart1" width="600" height="400"></canvas>
+  <h2>Comparativo de católicos en el mundo: 2024 vs 2025</h2>
+  <canvas id="worldCatholicsChart"></canvas>
   <script>
-    const ctx1 = document.getElementById('chart1').getContext('2d');
-    new Chart(ctx1, {
+    const ctx = document.getElementById('worldCatholicsChart').getContext('2d');
+    new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['2025'],
+        labels: ['2024', '2025'],
         datasets: [{
           label: 'Millones de católicos',
-          data: [1406],
-          backgroundColor: '#00b4d8'
+          data: [1390, 1406],
+          backgroundColor: ['#0077b6', '#00b4d8'],
+          borderRadius: 6,
+          borderSkipped: false
         }]
       },
       options: {
@@ -26,16 +39,26 @@
         plugins: {
           tooltip: {
             callbacks: {
-              label: ctx => `${ctx.parsed.y} millones`
+              label: function(context) {
+                return context.parsed.y + ' millones';
+              }
             }
-          }
+          },
+          legend: { display: false }
+        },
+        animation: {
+          duration: 1200,
+          easing: 'easeOutBounce'
         },
         scales: {
           y: {
             beginAtZero: false,
-            suggestedMin: 1300,
+            suggestedMin: 1350,
             suggestedMax: 1450,
-            title: { display: true, text: 'Millones de personas' }
+            title: {
+              display: true,
+              text: 'Millones de personas'
+            }
           }
         }
       }
